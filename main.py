@@ -1,8 +1,6 @@
 from selenium import webdriver
 import pandas as pd
 import time
-from bs4 import BeautifulSoup
-import random
 
 url = 'https://www.amazon.com/s?rh=n%3A16225007011&fs=true' # Delete reference on the url 'ref...'
 
@@ -12,14 +10,7 @@ chrome_options = webdriver.ChromeOptions()
 column_names = ['name', 'rating','rating_count','price']
 df = pd.DataFrame(columns = column_names)
 
-'''#load proxy list
-import csv
-proxy_list = []
-with open('8_proxy_rotation\proxies_working.csv','r') as f:
-    reader =csv.reader(f)
-    proxies = list(reader)
-    for row in proxies:
-        proxy_list.append(row[0])'''
+
 #_______________________________________________________
 i=0
 while i<20:
@@ -41,7 +32,7 @@ while i<20:
             rating = None
             for rate in rating_list:
                 rating = str(rating) + rate.text
-            rating = rating.replace(' out of 5','').replace('None','')
+            rating = rating.replace(' out of 5','').replace('None','') 
         except:
             pass
         # ______________________________________________________________________________________________
